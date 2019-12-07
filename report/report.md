@@ -73,7 +73,7 @@ All the files are in the appropriate logs folder
 ### 4.
 I don't understand the question, which generate ? WTF ?
 ## Task 5
-
+I've not seen any remove all the servers in any of the files
 ## Task 6
 
 ## Difficulties
