@@ -46,9 +46,32 @@ It seems that is a problem with an uptime ofserver because it say that the repla
 ### Serf and others
 
 ## Task 3
-
+### Copying serf handlers
+![Copy Serf Handlers](./assets/img/copySerfHandlers.png)
+### Deliverables
+For this task, all the deliverables will be on  the logs folder. But I would just like to mention that we didn't have any problems of networks like mentioned. The nodes seems well connected and the joins scripts were triggered.
 ## Task 4
-
+### Copy template
+![Copying haproxy config](./assets/img/copyHaproxyCfg.png)
+### Log of first haproxy conf
+in logs, the file logConfHaproxy 
+For the final manipulation I just modified the member-join.sh script to concatenate the configs created. So I had the resulting logs:
+```
+Container f59b51d037dd has joined the Serf cluster with the following IP address: 192.168.42.42
+Container 2462b0f1ed4a has joined the Serf cluster with the following IP address: 192.168.42.22
+Container 92c1a21662cb has joined the Serf cluster with the following IP address: 192.168.42.11
+```
+### Docker image layers
+For the examples given, i will say the first example is better, because if one of the command change maybe not all will be relaunched, if it's command3 none will be launched again, if it's command 2 we need to start command 3 again after it. In th second case if we change either of the command, all the commands will be launched again.
+#### Squashing (TODO)
+#### Flatenning (TODO)
+### 2.
+no fucking idea
+### 3.
+As mentioned I've changed the shell script to be more concise and less painful to do this.
+All the files are in the appropriate logs folder
+### 4.
+I don't understand the question, which generate ? WTF ?
 ## Task 5
 
 ## Task 6
