@@ -25,10 +25,10 @@ https://github.com/mbonjour/Teaching-HEIGVD-AIT-2019-Labo-Docker
 ## Task 1
 ### Image
 The screenshot asked for in deliverables :
-![Proof nodes are running](./assets/img/nodesProofTask1.png)
+![Proof nodes are running](../assets/img/nodesProofTask1.png)
 
 And in this image we can well see the s6 init who start the processes :
-![Proof S6 working](./assets/img/proofStartS6.png)
+![Proof S6 working](../assets/img/proofStartS6.png)
 
 ### Difficulties and resume (TODO: need to be more specified)
 We didn't have any difficulties doing this task. This task is made to implement the s6 processor supervisor. This supervisor will permit to run multiple processes in a container and don't stop it when the main process stop. That will maybe permit us to restart a process when it stops with s6 supervisor. 
