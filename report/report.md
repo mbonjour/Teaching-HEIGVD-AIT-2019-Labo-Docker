@@ -31,13 +31,14 @@ And in this image we can well see the s6 init who start the processes :
 ![Proof S6 working](./assets/img/proofStartS6.png)
 
 ### Difficulties and resume (TODO: need to be more specified)
-We didn't have any difficulties doing this task. This task is made to implement the s6 processor supervisor. This supervisor will permit to run multiple processes in a container and don't stop it when the main process stop. That will maybe permit us to restart a process when it stops with s6 supervisor. 
+We didn't have any difficulties doing this task. This task is made to implement the s6 processor supervisor. This supervisor will permit to run multiple processes in a container and don't stop it when the main process stop. That will maybe permit us to restart a process when it stops with s6 supervisor. We install a process supervisor to be able to run multiple processes in an docker container and it will be essential when installing multiple services in a docker container. S6 will lokup on the /etc/services.d folder and start the different services present (as mentioned [here](https://github.com/just-containers/s6-overlay#init-stages)).
 ## Task 2
 ### Configuration for serf process to s6 (both images)
 ![Adding Serf](./assets/img/s6AddSerf)
-## TODO : We didn't had any problem with networking, aybe we need to use docker run command because I used docker-compose each time and it worked fine for me.
+## TODO : We didn't had any problem with networking, maybe we need to use docker run command because I used docker-compose each time and it worked fine for me.
 
 ### Logs
+## TODO remake this step with docker run - docker-compose resolves the problem
 See the Task2 folder in the logs folder.
 ### Answer to given problematic of misconception (TODO)
 I don't see where the misconception resides at this point ?!?
