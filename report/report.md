@@ -53,8 +53,9 @@ It seems that is a problem with an uptime ofserver because it say that the repla
 ### Copying serf handlers
 ![Copy Serf Handlers](../assets/img/copySerfHandlers.png)
 ### Deliverables
-For this task, all the deliverables will be on  the logs folder. But I would just like to mention that we didn't have any problems of networks like mentioned. The nodes seems well connected and the joins scripts were triggered.
+For this task, all the deliverables will be on the logs folder. But I would just like to mention that we didn't have any problems of networks like mentioned. The nodes seems well connected and the joins scripts were triggered. That's because we used docker-compose.
 ## Task 4
+### 1.
 ### Copy template
 ![Copying haproxy config](../assets/img/copyHaproxyCfg.png)
 ### Log of first haproxy conf
@@ -66,19 +67,30 @@ Container 2462b0f1ed4a has joined the Serf cluster with the following IP address
 Container 92c1a21662cb has joined the Serf cluster with the following IP address: 192.168.42.11
 ```
 ### Docker image layers
-For the examples given, i will say the first example is better, because if one of the command change maybe not all will be relaunched, if it's command3 none will be launched again, if it's command 2 we need to start command 3 again after it. In th second case if we change either of the command, all the commands will be launched again.
-#### Squashing (TODO)
-#### Flatenning (TODO)
+For the examples given, I will say the first example is better, because if one of the command change maybe not all will be relaunched, if it's command 3 none will be launched again, if it's command 2 we need to start command 3 again after it. In the second case if we change either of the command, all the commands will be launched again.
+
+This can be explained by the way docker handles the dockerfile. It's because each command creates a layer of the result command of the image and these layers are saved. This is why docker is faster if the first commands are not changed, in fact these layers are reused if it's not changed. 
+#### Squashing
+Option exists in the docker daemon, it's in an experimental state but it's interesting to se this. Squashing is the way docker remove layers that are useless. So docker maybe just save the last layer which contain the last version of the image. This way the explained process previously will not work properly.
+
+#### Flatenning
+The command used to flatten a docker container is 
+
+```docker export <CONTAINER ID> | docker import - some-image-name:latest```
+
 ### 2.
-no fucking idea
+This can be done by regrouping all the common commands at the beginning of the Dockerfile. This way the first layers of the images will be the same and only the last layers will be different. So the build of the second image will be faster because some layers can be reused.
+
 ### 3.
 As mentioned I've changed the shell script to be more concise and less painful to do this.
 All the files are in the appropriate logs folder
+
 ### 4.
-I don't understand the question, which generate ? WTF ?
+I think I resolved one of the problems because at first we regenerate the entire file at each join. But we will have a problem when starting a few nodes, because we can't generate multiple lines with differents servers.
+
 ## Task 5
-I've not seen any remove all the servers in any of the files
-I've put all the neccessary logs, we just need to cite it here and organize them. Will not be too difficult.
+We've not seen any remove all the servers in any of the files.
+We've put all the neccessary logs in the relevant folder.
 ## Task 6
 ### Small experimentations
 We have put 3 nodes (so strating 3 times the webapp image) and we've gone with this start page of HA :
@@ -100,9 +112,9 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 0458179868f6        webapp              "/init"             11 minutes ago      Up 11 minutes       3000/tcp, 7373/tcp, 7946/tcp                                                             s1
 48bef3f0011e        ha                  "/init"             12 minutes ago      Up 12 minutes       0.0.0.0:80->80/tcp, 7373/tcp, 0.0.0.0:1936->1936/tcp, 0.0.0.0:9999->9999/tcp, 7946/tcp   ha
 ```
-### Feelings (TODO)
+### Feelings
 I think this solution is complete, in fact it's really good to see the nodes updating like that when stoping/adding. Maybe it needs improvement of the haproxy restart because we see that it takes some time to restart it. But well great solution proposed here, I'm impressed of what we are capable of automating.
 ## Difficulties
-
+No real difficulties seen in doing these tasks, exept for the questions because there's some really difficult questions.
 ## Conclusion
 This lab presents us a way to do a dynamic system of reverse proxy with HaProxy. it's really good and complete. We can see the configurations change on the go and the nodes appearing/disapearing. We can improve the solution but it's a base I think we can reuse to do some system that need really good availability !
