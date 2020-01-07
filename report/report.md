@@ -30,8 +30,11 @@ The screenshot asked for in deliverables :
 And in this image we can well see the s6 init who start the processes :
 ![Proof S6 working](../assets/img/proofStartS6.png)
 
-### Difficulties and resume (TODO: need to be more specified)
-We didn't have any difficulties doing this task. This task is made to implement the s6 processor supervisor. This supervisor will permit to run multiple processes in a container and don't stop it when the main process stop. That will maybe permit us to restart a process when it stops with s6 supervisor. 
+### Difficulties and resume
+We didn't have any difficulties doing this task. This task is made to implement the s6 processor supervisor. Docker work with one main process, this main process can start other process but it is responsible for managing all processes that it starts. As main process we will start a little process "init", if another process stop, it doesn't stop the container. We will add a supervisor S6 who will manage the process. This supervisor will permit to run multiple processes in a container and permit us to restart a process when it stops with s6 supervisor. 
+
+More details on : https://docs.docker.com/config/containers/multi-service_container/
+
 ## Task 2
 ### Configuration for serf process to s6 (both images)
 ![Adding Serf](./assets/img/s6AddSerf)
