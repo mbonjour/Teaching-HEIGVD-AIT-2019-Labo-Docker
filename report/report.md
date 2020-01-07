@@ -25,16 +25,19 @@ https://github.com/mbonjour/Teaching-HEIGVD-AIT-2019-Labo-Docker
 ## Task 1
 ### Image
 The screenshot asked for in deliverables :
-![Proof nodes are running](./assets/img/nodesProofTask1.png)
+![Proof nodes are running](../assets/img/nodesProofTask1.png)
 
 And in this image we can well see the s6 init who start the processes :
-![Proof S6 working](./assets/img/proofStartS6.png)
+![Proof S6 working](../assets/img/proofStartS6.png)
 
-### Difficulties and resume (TODO: need to be more specified)
-We didn't have any difficulties doing this task. This task is made to implement the s6 processor supervisor. This supervisor will permit to run multiple processes in a container and don't stop it when the main process stop. That will maybe permit us to restart a process when it stops with s6 supervisor. We install a process supervisor to be able to run multiple processes in an docker container and it will be essential when installing multiple services in a docker container. S6 will lokup on the /etc/services.d folder and start the different services present (as mentioned [here](https://github.com/just-containers/s6-overlay#init-stages)).
+### Difficulties and resume
+We didn't have any difficulties doing this task. This task is made to implement the s6 processor supervisor. Docker work with one main process, this main process can start other process but it is responsible for managing all processes that it starts. As main process we will start a little process "init", if another process stop, it doesn't stop the container. We will add a supervisor S6 who will manage the process. This supervisor will permit to run multiple processes in a container and permit us to restart a process when it stops with s6 supervisor. 
+
+More details on : https://docs.docker.com/config/containers/multi-service_container/
+
 ## Task 2
 ### Configuration for serf process to s6 (both images)
-![Adding Serf](./assets/img/s6AddSerf)
+![Adding Serf](../assets/img/s6AddSerf.png)
 ## TODO : We didn't had any problem with networking, maybe we need to use docker run command because I used docker-compose each time and it worked fine for me.
 
 ### Logs
@@ -48,12 +51,12 @@ It seems that is a problem with an uptime ofserver because it say that the repla
 
 ## Task 3
 ### Copying serf handlers
-![Copy Serf Handlers](./assets/img/copySerfHandlers.png)
+![Copy Serf Handlers](../assets/img/copySerfHandlers.png)
 ### Deliverables
 For this task, all the deliverables will be on  the logs folder. But I would just like to mention that we didn't have any problems of networks like mentioned. The nodes seems well connected and the joins scripts were triggered.
 ## Task 4
 ### Copy template
-![Copying haproxy config](./assets/img/copyHaproxyCfg.png)
+![Copying haproxy config](../assets/img/copyHaproxyCfg.png)
 ### Log of first haproxy conf
 in logs, the file logConfHaproxy 
 For the final manipulation I just modified the member-join.sh script to concatenate the configs created. So I had the resulting logs:
@@ -79,7 +82,7 @@ I've put all the neccessary logs, we just need to cite it here and organize them
 ## Task 6
 ### Small experimentations
 We have put 3 nodes (so strating 3 times the webapp image) and we've gone with this start page of HA :
-![3 nodes running](./assets/img/haproxyStart3Nodes.png)
+![3 nodes running](../assets/img/haproxyStart3Nodes.png)
 With the following docker ps file (see in logs/task6/docker_ps_logs_3nodes) :
 ```
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                                                                    NAMES
@@ -89,7 +92,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 48bef3f0011e        ha                  "/init"             8 minutes ago       Up 8 minutes        0.0.0.0:80->80/tcp, 7373/tcp, 0.0.0.0:1936->1936/tcp, 0.0.0.0:9999->9999/tcp, 7946/tcp   ha
 ```
 If we run the command `docker stop s2` we have this start page :
-![2 nodes running](./assets/img/haproxyStart2Nodes.png)
+![2 nodes running](../assets/img/haproxyStart2Nodes.png)
 With the following docker ps file (see in logs/task6/docker_ps_logs_2nodes) :
 ```
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                                                                    NAMES
