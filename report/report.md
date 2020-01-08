@@ -5,7 +5,7 @@
 ## Table of contents
 
 ## Introduction
-
+In this lab we will se how to do an infrastructure which can scale out dynamically when we detect a new node or a node will go down. We will use different new technologies to us in this lab. It's useful to see these in action in such a manner.
 ## Task 0
 ### M1
 Well not for the case described here. Because when people will connect in mass at Black Friday it will probably crash. And with this obscure bug that hasn't been fixed yet, the servers can crash without any charge. If it's the case nothing can restart the servers directly so there will be so awfully long downtimes.
