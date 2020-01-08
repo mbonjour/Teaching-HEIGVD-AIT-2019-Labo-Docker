@@ -15,9 +15,10 @@ We need to add a environment variable to the docker image of HAProxy (needed to 
 We need a system where we can add/remove web servers and these can inform haproxy that they're here to respond to some HTTP requests. TO resolve the problem of crashing/overheating servers we need something to monitor the web servers and shutdowns/restart it when needed.
 ### M4
 Like we said on M3, a system where the nodes inform the proxy of their presence and their capacities.
-### M5 (TODO)
+### M5
 No we don't actually have the ability to perform these actions, maybe we can try with some shared volume where all the logs are created and one central container check the logs of all nodes and acts in consequences of the different logs seen.
-### M6 (TODO)
+### M6
+When we add a web server nodes, we need to add the new node in the file haproxy.cfg and launch again the script for add the node. To make the configuration more dynamic, we need to use the Runtime API of HAProxy.
 ### Image of the nodes
 ![Nodes proof](../assets/img/nodesProof.png)
 ### URL Repository
@@ -38,17 +39,13 @@ More details on : https://docs.docker.com/config/containers/multi-service_contai
 ## Task 2
 ### Configuration for serf process to s6 (both images)
 ![Adding Serf](../assets/img/s6AddSerf.png)
-## TODO : We didn't had any problem with networking, maybe we need to use docker run command because I used docker-compose each time and it worked fine for me.
-
 ### Logs
-## TODO remake this step with docker run - docker-compose resolves the problem
 See the Task2 folder in the logs folder.
-### Answer to given problematic of misconception (TODO)
-I don't see where the misconception resides at this point ?!?
-It seems that is a problem with an uptime ofserver because it say that the replay option will not be helpful because of the misconception.
-
-### Serf and others
-
+### Answer to given problematic of misconception
+The problem is that we indicate at the nodes to join the nodes "ha". It works only if "ha" is up when the other nodes come. We would like everyone to be able to join independently.
+### Serf
+Serf establish communication between the nodes of a cluster. The nodes will inform about their states and inform about the states of the others in the cluster. Serf detec whan a node go offline or online.
+There are other solutions for solving our situation, for exemple Consul who work with the gossip protocol of serf, but allow more options.
 ## Task 3
 ### Copying serf handlers
 ![Copy Serf Handlers](../assets/img/copySerfHandlers.png)
